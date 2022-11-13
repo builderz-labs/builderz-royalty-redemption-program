@@ -176,7 +176,7 @@ export const nftStateBeet = new beet.BeetStruct<
     ['accountDiscriminator', beet.uniformFixedSizeArray(beet.u8, 8)],
     ['bump', beet.u8],
     ['mint', beetSolana.publicKey],
-    ['repayTimestamp', beet.i128],
+    ['repayTimestamp', beet.i64],
   ],
   NftState.fromArgs,
   'NftState'

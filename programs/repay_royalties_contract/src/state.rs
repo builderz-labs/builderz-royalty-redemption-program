@@ -11,7 +11,7 @@ pub const NFT_STATE_PREFIX: &str = "nft-state";
 pub struct NftState {
     pub bump: u8,
     pub mint: Pubkey,
-    pub repay_timestamp: i128
+    pub repay_timestamp: i64
 }
 
 pub fn assert_keys_equal(key1: Pubkey, key2: Pubkey) -> Result<()> {

@@ -68,5 +68,7 @@ pub fn handler<'info>(ctx: Context<'_, '_, '_, 'info, RepayRoyaltiesCtx<'info>>,
         }
     }
 
+    nft_state.repay_timestamp = Clock::get().unwrap().unix_timestamp;
+
     Ok(())
 }

@@ -55,7 +55,7 @@
           },
           {
             "name": "repayTimestamp",
-            "type": "i128"
+            "type": "i64"
           }
         ]
       }
