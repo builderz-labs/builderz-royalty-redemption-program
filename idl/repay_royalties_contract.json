@@ -1,0 +1,82 @@
+{
+  "version": "0.1.0",
+  "name": "repay_royalties_contract",
+  "instructions": [
+    {
+      "name": "repayRoyalties",
+      "accounts": [
+        {
+          "name": "nftState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nftMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "nftMintMetadata",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "latestSaleLamports",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "NftState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "mint",
+            "type": "publicKey"
+          },
+          {
+            "name": "repayTimestamp",
+            "type": "i128"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "NoMintMetadata",
+      "msg": "No Mint Metadata"
+    },
+    {
+      "code": 6001,
+      "name": "PublickeyMissmatch",
+      "msg": "Publickey Missmatch"
+    }
+  ],
+  "metadata": {
+    "address": "9ZskGH9wtdwM9UXjBq1KDwuaLfrZyPChz41Hx7NWhTFf",
+    "origin": "anchor",
+    "binaryVersion": "0.25.0",
+    "libVersion": "0.25.0"
+  }
+}
