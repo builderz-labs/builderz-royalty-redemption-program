@@ -6,6 +6,7 @@ import { Metaplex } from "@metaplex-foundation/js"
 import { readFileSync } from "fs";
  
 import { createRepayRoyaltiesInstruction, NftState, PROGRAM_ID } from "../src/generated";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 
 describe("repay_royalties_contract", () => {
   // Configure the client to use the local cluster.
@@ -34,25 +35,23 @@ describe("repay_royalties_contract", () => {
 
     const nfts = await metaplex.nfts().findAllByMintList({ mints: mintListPubkeys });    
 
-    const testNFT = nfts[0]
+    const testNFT = nfts[2]
 
     const creators = testNFT.creators;
     const remainingAccounts = [];
     creators.forEach(creator => {
       remainingAccounts.push({
         pubkey: creator.address,
-        isWritable: false,
+        isWritable: true,
         isSigner: false,
       })
-    })
-    console.log(remainingAccounts);
-    
+    })    
     
     // Program action
 
     const [nftStateAddress] = PublicKey.findProgramAddressSync(
       // @ts-ignore
-      [Buffer.from("nft-state"), nfts[0].mintAddress.toBuffer()],
+      [Buffer.from("nft-state"), testNFT.mintAddress.toBuffer()],
       PROGRAM_ID
     )
     
@@ -78,7 +77,7 @@ describe("repay_royalties_contract", () => {
       user: kp.publicKey,
       anchorRemainingAccounts: remainingAccounts,
     }, {
-      latestSaleLamports: 100000
+      latestSaleLamports: 1 * LAMPORTS_PER_SOL
     }))
 
     const blockhash = await connection.getLatestBlockhash();
@@ -87,9 +86,11 @@ describe("repay_royalties_contract", () => {
     tx.recentBlockhash = blockhash.blockhash;
     wallet.signTransaction(tx);
 
-    const sig = await connection.sendRawTransaction(tx.serialize());
+    const sig = await connection.sendRawTransaction(tx.serialize(), { skipPreflight: true });
+    console.log(sig);
+    
 
-    const confirmation = connection.confirmTransaction({
+    const confirmation = await connection.confirmTransaction({
       signature: sig,
       blockhash: blockhash.blockhash,
       lastValidBlockHeight: blockhash.lastValidBlockHeight

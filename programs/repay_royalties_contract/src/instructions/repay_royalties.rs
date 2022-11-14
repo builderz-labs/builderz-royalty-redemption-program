@@ -25,9 +25,7 @@ pub struct RepayRoyaltiesCtx<'info> {
 
 pub fn handler<'info>(ctx: Context<'_, '_, '_, 'info, RepayRoyaltiesCtx<'info>>, latest_sale_lamports: u64) -> Result<()> {
     let nft_state = &mut ctx.accounts.nft_state;
-    
-    nft_state.bump = *ctx.bumps.get(NFT_STATE_PREFIX).unwrap();
-    nft_state.mint = ctx.accounts.nft_mint.key();
+        nft_state.mint = ctx.accounts.nft_mint.key();
 
     if ctx.accounts.nft_mint_metadata.data_is_empty() {
         return Err(error!(ErrorCode::NoMintMetadata))

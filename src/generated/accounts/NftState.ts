@@ -15,7 +15,6 @@ import * as beetSolana from '@metaplex-foundation/beet-solana'
  * @category generated
  */
 export type NftStateArgs = {
-  bump: number
   mint: web3.PublicKey
   repayTimestamp: beet.bignum
 }
@@ -30,7 +29,6 @@ export const nftStateDiscriminator = [249, 203, 49, 84, 4, 13, 85, 203]
  */
 export class NftState implements NftStateArgs {
   private constructor(
-    readonly bump: number,
     readonly mint: web3.PublicKey,
     readonly repayTimestamp: beet.bignum
   ) {}
@@ -39,7 +37,7 @@ export class NftState implements NftStateArgs {
    * Creates a {@link NftState} instance from the provided args.
    */
   static fromArgs(args: NftStateArgs) {
-    return new NftState(args.bump, args.mint, args.repayTimestamp)
+    return new NftState(args.mint, args.repayTimestamp)
   }
 
   /**
@@ -145,7 +143,6 @@ export class NftState implements NftStateArgs {
    */
   pretty() {
     return {
-      bump: this.bump,
       mint: this.mint.toBase58(),
       repayTimestamp: (() => {
         const x = <{ toNumber: () => number }>this.repayTimestamp
@@ -174,7 +171,6 @@ export const nftStateBeet = new beet.BeetStruct<
 >(
   [
     ['accountDiscriminator', beet.uniformFixedSizeArray(beet.u8, 8)],
-    ['bump', beet.u8],
     ['mint', beetSolana.publicKey],
     ['repayTimestamp', beet.i64],
   ],

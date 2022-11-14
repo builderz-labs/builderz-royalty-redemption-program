@@ -46,10 +46,6 @@
         "kind": "struct",
         "fields": [
           {
-            "name": "bump",
-            "type": "u8"
-          },
-          {
             "name": "mint",
             "type": "publicKey"
           },

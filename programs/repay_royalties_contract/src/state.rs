@@ -4,12 +4,11 @@ use anchor_lang::{
 };
 use crate::errors::ErrorCode;
 
-pub const NFT_STATE_SIZE: usize = 8 + 1 + 32 + 16;
+pub const NFT_STATE_SIZE: usize = 8 + 32 + 16;
 pub const NFT_STATE_PREFIX: &str = "nft-state";
 
 #[account]
 pub struct NftState {
-    pub bump: u8,
     pub mint: Pubkey,
     pub repay_timestamp: i64
 }

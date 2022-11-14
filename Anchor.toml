@@ -7,11 +7,14 @@ repay_royalties_contract = "9ZskGH9wtdwM9UXjBq1KDwuaLfrZyPChz41Hx7NWhTFf"
 [programs.devnet]
 repay_royalties_contract = "9ZskGH9wtdwM9UXjBq1KDwuaLfrZyPChz41Hx7NWhTFf"
 
+[programs.mainnet]
+repay_royalties_contract = "9ZskGH9wtdwM9UXjBq1KDwuaLfrZyPChz41Hx7NWhTFf"
+
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "devnet"
+cluster = "mainnet"
 wallet = "/mnt/f/code/code/dynamic-labs/clients/cynova/kp.json"
 
 [scripts]
