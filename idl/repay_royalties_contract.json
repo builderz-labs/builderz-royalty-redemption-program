@@ -21,6 +21,11 @@
           "isSigner": false
         },
         {
+          "name": "rewardManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
           "name": "user",
           "isMut": true,
           "isSigner": true

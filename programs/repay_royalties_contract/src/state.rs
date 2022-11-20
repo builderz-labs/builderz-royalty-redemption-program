@@ -1,7 +1,8 @@
 use anchor_lang::{
     prelude::*,
-    solana_program::{program_memory::sol_memcmp, pubkey::PUBKEY_BYTES}
+    solana_program::{program_memory::sol_memcmp, pubkey::PUBKEY_BYTES},
 };
+use std::str::FromStr;
 use crate::errors::ErrorCode;
 
 pub const NFT_STATE_SIZE: usize = 8 + 32 + 16;
@@ -19,4 +20,8 @@ pub fn assert_keys_equal(key1: Pubkey, key2: Pubkey) -> Result<()> {
     } else {
         Ok(())
     }
+}
+
+pub fn assert_reward_manager(pubkey: &Pubkey) -> bool {
+    pubkey.to_string() == Pubkey::from_str("HPEcKGUfKsRgzD7DQEtXHUGu6TfCieqYopxrRQbrRGAy").unwrap().to_string()
 }
