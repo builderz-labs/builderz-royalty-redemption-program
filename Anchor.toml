@@ -15,7 +15,7 @@ url = "https://api.apr.dev"
 
 [provider]
 cluster = "mainnet"
-wallet = "/mnt/f/code/code/dynamic-labs/clients/cynova/kp.json"
+wallet = "/Users/rubenschaller/kulture/keys/BLDRZQiqt4ESPz12L9mt4XTBjeEfjoBopGPDMA36KtuZ.json"
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"

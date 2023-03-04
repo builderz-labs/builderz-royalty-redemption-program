@@ -18,9 +18,6 @@ pub struct RepayRoyaltiesCtx<'info> {
     nft_mint: Account<'info, Mint>,
     /// CHECK: We're not reading or writing from this file
     nft_mint_metadata: AccountInfo<'info>,
-    /// CHECK: This is not dangerous because we don't read or write from this account
-    #[account(mut, constraint = assert_reward_manager(&reward_manager.key()))]
-    reward_manager: UncheckedAccount<'info>,
     #[account(mut)]
     user: Signer<'info>,
     system_program: Program<'info, System>
@@ -43,12 +40,6 @@ pub fn handler<'info>(ctx: Context<'_, '_, '_, 'info, RepayRoyaltiesCtx<'info>>,
         .checked_mul(sfbp.into())
         .unwrap()
         .checked_div(10000)
-        .unwrap();
-
-    let fee_amount = repay_amount
-        .checked_mul(3)
-        .unwrap()
-        .checked_div(100)
         .unwrap();
 
     let remaining_accounts = &mut ctx.remaining_accounts.iter();
@@ -74,15 +65,6 @@ pub fn handler<'info>(ctx: Context<'_, '_, '_, 'info, RepayRoyaltiesCtx<'info>>,
             )?;
         }
     }
-    
-    invoke(
-        &transfer(&ctx.accounts.user.key(), &ctx.accounts.reward_manager.key(), fee_amount),
-        &[
-            ctx.accounts.user.to_account_info(),
-            ctx.accounts.reward_manager.to_account_info(),
-            ctx.accounts.system_program.to_account_info(),
-        ],
-    )?;
 
     nft_state.repay_timestamp = Clock::get().unwrap().unix_timestamp;
 
