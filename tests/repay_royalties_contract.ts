@@ -89,7 +89,7 @@ describe("repay_royalties_contract", () => {
           anchorRemainingAccounts: remainingAccounts,
         },
         {
-          latestSaleLamports: 0.5 * LAMPORTS_PER_SOL,
+          royaltiesToPay: 0.5 * LAMPORTS_PER_SOL,
         }
       )
     );

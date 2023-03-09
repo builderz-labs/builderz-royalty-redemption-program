@@ -23,7 +23,7 @@ pub struct RepayRoyaltiesCtx<'info> {
     system_program: Program<'info, System>
 }
 
-pub fn handler<'info>(ctx: Context<'_, '_, '_, 'info, RepayRoyaltiesCtx<'info>>, latest_sale_lamports: u64) -> Result<()> {
+pub fn handler<'info>(ctx: Context<'_, '_, '_, 'info, RepayRoyaltiesCtx<'info>>, royalties_to_pay: u64) -> Result<()> {
     let nft_state = &mut ctx.accounts.nft_state;
         nft_state.mint = ctx.accounts.nft_mint.key();
 
@@ -32,22 +32,14 @@ pub fn handler<'info>(ctx: Context<'_, '_, '_, 'info, RepayRoyaltiesCtx<'info>>,
     }
 
     let nft_mint_metadata = Metadata::from_account_info(&ctx.accounts.nft_mint_metadata.to_account_info())?;
-
     let creators = nft_mint_metadata.data.creators.unwrap();
-    let sfbp = nft_mint_metadata.data.seller_fee_basis_points;
-
-    let repay_amount = latest_sale_lamports
-        .checked_mul(sfbp.into())
-        .unwrap()
-        .checked_div(10000)
-        .unwrap();
 
     let remaining_accounts = &mut ctx.remaining_accounts.iter();
 
     for creator in creators {
         let pct = creator.share as u64;
         let creator_fee = pct
-            .checked_mul(repay_amount)
+            .checked_mul(royalties_to_pay)
             .unwrap()
             .checked_div(100)
             .unwrap();

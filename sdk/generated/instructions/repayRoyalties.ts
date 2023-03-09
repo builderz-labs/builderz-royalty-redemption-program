@@ -14,7 +14,7 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type RepayRoyaltiesInstructionArgs = {
-  latestSaleLamports: beet.bignum
+  royaltiesToPay: beet.bignum
 }
 /**
  * @category Instructions
@@ -28,7 +28,7 @@ export const repayRoyaltiesStruct = new beet.BeetArgsStruct<
 >(
   [
     ['instructionDiscriminator', beet.uniformFixedSizeArray(beet.u8, 8)],
-    ['latestSaleLamports', beet.u64],
+    ['royaltiesToPay', beet.u64],
   ],
   'RepayRoyaltiesInstructionArgs'
 )

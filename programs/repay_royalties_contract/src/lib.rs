@@ -10,7 +10,7 @@ declare_id!("9ZskGH9wtdwM9UXjBq1KDwuaLfrZyPChz41Hx7NWhTFf");
 pub mod repay_royalties_contract {
     use super::*;
 
-    pub fn repay_royalties<'info>(ctx: Context<'_, '_, '_, 'info, RepayRoyaltiesCtx<'info>>, latest_sale_lamports: u64) -> Result<()> {
-        repay_royalties::handler(ctx, latest_sale_lamports)
+    pub fn repay_royalties<'info>(ctx: Context<'_, '_, '_, 'info, RepayRoyaltiesCtx<'info>>, royalties_to_pay: u64) -> Result<()> {
+        repay_royalties::handler(ctx, royalties_to_pay)
     }
 }

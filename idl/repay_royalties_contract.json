@@ -33,7 +33,7 @@
       ],
       "args": [
         {
-          "name": "latestSaleLamports",
+          "name": "royaltiesToPay",
           "type": "u64"
         }
       ]
