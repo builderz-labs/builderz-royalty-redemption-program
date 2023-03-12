@@ -1,8 +1,8 @@
 {
   "name": "@builderz/royalty-solution",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "SDK to interact with the royalty-repayment-contract made by Builderz",
-  "main": "src/index.ts",
+  "main": "build/index",
   "files": [
     "build/**/*"
   ],
