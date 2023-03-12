@@ -5,11 +5,7 @@ import { RepayRoyaltiesContract } from "../target/types/repay_royalties_contract
 import { Metaplex } from "@metaplex-foundation/js";
 import { readFileSync } from "fs";
 
-import {
-  createRepayRoyaltiesInstruction,
-  NftState,
-  PROGRAM_ID,
-} from "../sdk/generated";
+import { createRepayRoyaltiesInstruction, NftState, PROGRAM_ID } from "../sdk/";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 
 describe("repay_royalties_contract", () => {
