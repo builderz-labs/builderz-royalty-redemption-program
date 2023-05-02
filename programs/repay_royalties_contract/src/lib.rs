@@ -13,4 +13,8 @@ pub mod repay_royalties_contract {
     pub fn repay_royalties<'info>(ctx: Context<'_, '_, '_, 'info, RepayRoyaltiesCtx<'info>>, royalties_to_pay: u64) -> Result<()> {
         repay_royalties::handler(ctx, royalties_to_pay)
     }
+
+    pub fn redeem_royalties<'info>(ctx: Context<'_, '_, '_, 'info, RedeemRoyaltiesCtx<'info>>, ix: RedemptionIx) -> Result<()> {
+        redeem_royalties::handler(ctx, ix)
+    }
 }

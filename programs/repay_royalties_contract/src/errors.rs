@@ -5,5 +5,7 @@ pub enum ErrorCode {
     #[msg("No Mint Metadata")]
     NoMintMetadata,
     #[msg("Publickey Missmatch")]
-    PublickeyMissmatch
+    PublickeyMissmatch,
+    #[msg("Metadata and Mint don't match")]
+    MetadataMintMismatch,
 }
