@@ -8,6 +8,19 @@ import { readFileSync } from "fs";
 import { createRepayRoyaltiesInstruction, NftState, PROGRAM_ID } from "../sdk/";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 
+import {
+  redeemRoyalties,
+  REPAY_ROYALTIES_CONTRACT_PROGRAM_ID,
+} from "../clients/js/src";
+import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
+import {
+  keypairIdentity,
+  some,
+  publicKey,
+  transactionBuilder,
+} from "@metaplex-foundation/umi";
+import { findMetadataPda } from "@metaplex-foundation/mpl-token-metadata";
+
 describe("repay_royalties_contract", () => {
   // Configure the client to use the local cluster.
   anchor.setProvider(anchor.AnchorProvider.env());
@@ -111,5 +124,54 @@ describe("repay_royalties_contract", () => {
     nftStateAccount = await tryGetAccount();
 
     console.log(nftStateAccount);
+  });
+
+  it("Is redeemed!", async () => {
+    // With Kinobi & UMI
+
+    const umi = createUmi(
+      "https://helius-rpc-proxy-devnet.builderzlabs.workers.dev"
+    );
+
+    const kp = umi.eddsa.createKeypairFromSecretKey(
+      Uint8Array.from(JSON.parse(process.env.KP))
+    );
+
+    umi.use(keypairIdentity(kp));
+
+    const redemptionPda = umi.eddsa.findPda(
+      REPAY_ROYALTIES_CONTRACT_PROGRAM_ID,
+      [
+        umi.serializer.string({ size: "variable" }).serialize("redemption"),
+        umi.serializer.publicKey().serialize(kp.publicKey),
+      ]
+    );
+
+    const nftMint = publicKey("J9MGK8Lns8qiFRLRPb2RhPQn5kfLWzbqXsdNaHTWw61K");
+    const nftMintMetadata = findMetadataPda(umi, { mint: nftMint });
+
+    const signatureString =
+      "45Wi51ZBxQ25EQzQR3FHq7NQ81mEuxhvzKsnGYDcCQbdiamGZCMmYkeeNyFHd2UkL9DkwuikFDedjNYvCffVcJHC";
+    const signatureByteArray = new PublicKey(signatureString).toBuffer();
+
+    const tx = transactionBuilder().add(
+      redeemRoyalties(umi, {
+        redemption: redemptionPda,
+        nftMint,
+        nftMintMetadata,
+        user: umi.identity,
+        amount: 0.5 * LAMPORTS_PER_SOL,
+        saleSig: some(signatureByteArray),
+      })
+    );
+
+    try {
+      const res = await tx.sendAndConfirm(umi, {
+        confirm: { commitment: "confirmed" },
+      });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   });
 });

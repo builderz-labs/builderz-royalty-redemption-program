@@ -1,0 +1,24 @@
+{
+  "name": "@builderz/royalty-redemption",
+  "version": "1.0.5",
+  "description": "SDK to interact with the royalty-rdemption-program made by Builderz",
+  "main": "build/index",
+  "files": [
+    "build/**/*"
+  ],
+  "scripts": {
+    "build": "tsc --outDir build",
+    "publish": "npm publish"
+  },
+  "keywords": [
+    "solana",
+    "nfts",
+    "royalty",
+    "renaissance"
+  ],
+  "author": "Kulture",
+  "license": "ISC",
+  "dependencies": {
+    "@metaplex-foundation/umi": "^0.7.2"
+  }
+}

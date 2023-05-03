@@ -5,7 +5,7 @@ skip-lint = false
 repay_royalties_contract = "9ZskGH9wtdwM9UXjBq1KDwuaLfrZyPChz41Hx7NWhTFf"
 
 [programs.devnet]
-repay_royalties_contract = "9ZskGH9wtdwM9UXjBq1KDwuaLfrZyPChz41Hx7NWhTFf"
+repay_royalties_contract = "DqRZLWqGNSeSHHuE1trgmkRQLntptAW44af9uFcor13g"
 
 [programs.mainnet]
 repay_royalties_contract = "9ZskGH9wtdwM9UXjBq1KDwuaLfrZyPChz41Hx7NWhTFf"
@@ -14,7 +14,7 @@ repay_royalties_contract = "9ZskGH9wtdwM9UXjBq1KDwuaLfrZyPChz41Hx7NWhTFf"
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "mainnet"
+cluster = "devnet"
 wallet = "/Users/rubenschaller/kulture/keys/BLDRZQiqt4ESPz12L9mt4XTBjeEfjoBopGPDMA36KtuZ.json"
 
 [scripts]
