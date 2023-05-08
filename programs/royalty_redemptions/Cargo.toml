@@ -1,12 +1,12 @@
 [package]
-name = "repay_royalties_contract"
+name = "royalty_redemptions"
 version = "0.1.0"
-description = "Created with Anchor"
+description = "Program to facilitate NFT royalty redemptions "
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "repay_royalties_contract"
+name = "royalty_redemptions"
 
 [features]
 no-entrypoint = []

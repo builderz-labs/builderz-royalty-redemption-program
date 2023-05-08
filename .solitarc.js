@@ -1,13 +1,13 @@
-const path = require('path');
-const programDir = path.join(__dirname, 'programs/repay_royalties_contract');
-const idlDir = path.join(__dirname, 'idl');
-const sdkDir = path.join(__dirname, 'src', 'generated');
-const binaryInstallDir = path.join(__dirname, '.crates');
+const path = require("path");
+const programDir = path.join(__dirname, "programs/royalty_redemptions");
+const idlDir = path.join(__dirname, "idl");
+const sdkDir = path.join(__dirname, "sdk-repay-royalties", "src", "generated");
+const binaryInstallDir = path.join(__dirname, ".crates");
 
 module.exports = {
-  idlGenerator: 'anchor',
-  programName: 'repay_royalties_contract',
-  programId: '9ZskGH9wtdwM9UXjBq1KDwuaLfrZyPChz41Hx7NWhTFf',
+  idlGenerator: "anchor",
+  programName: "royalty_redemptions",
+  programId: "4pV5PQe2AH3r8M9sZ1seMHwhwCyLBdWbaiuWMphXSfaL",
   idlDir,
   sdkDir,
   binaryInstallDir,

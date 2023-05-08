@@ -1,0 +1,131 @@
+{
+  "version": "0.1.0",
+  "name": "royalty_redemptions",
+  "instructions": [
+    {
+      "name": "redeemRoyalties",
+      "accounts": [
+        {
+          "name": "redemption",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nftMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "nftMintMetadata",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "ix",
+          "type": {
+            "defined": "RedemptionIx"
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Redemption",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "mint",
+            "type": "publicKey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "saleSig",
+            "type": {
+              "option": {
+                "array": [
+                  "u8",
+                  64
+                ]
+              }
+            }
+          },
+          {
+            "name": "coSigner",
+            "type": {
+              "option": "publicKey"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "RedemptionIx",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "saleSig",
+            "type": {
+              "option": {
+                "array": [
+                  "u8",
+                  64
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "NoMintMetadata",
+      "msg": "No Mint Metadata"
+    },
+    {
+      "code": 6001,
+      "name": "PublickeyMissmatch",
+      "msg": "Publickey Missmatch"
+    },
+    {
+      "code": 6002,
+      "name": "MetadataMintMismatch",
+      "msg": "Metadata and Mint don't match"
+    }
+  ],
+  "metadata": {
+    "address": "4pV5PQe2AH3r8M9sZ1seMHwhwCyLBdWbaiuWMphXSfaL",
+    "origin": "anchor",
+    "binaryVersion": "0.27.0",
+    "libVersion": "0.27.0"
+  }
+}

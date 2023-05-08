@@ -2,12 +2,15 @@
 seeds = false
 skip-lint = false
 [programs.localnet]
+royalty_redemptions = "4pV5PQe2AH3r8M9sZ1seMHwhwCyLBdWbaiuWMphXSfaL"
 repay_royalties_contract = "9ZskGH9wtdwM9UXjBq1KDwuaLfrZyPChz41Hx7NWhTFf"
 
 [programs.devnet]
-repay_royalties_contract = "DqRZLWqGNSeSHHuE1trgmkRQLntptAW44af9uFcor13g"
+royalty_redemptions = "4pV5PQe2AH3r8M9sZ1seMHwhwCyLBdWbaiuWMphXSfaL"
+repay_royalties_contract = "9ZskGH9wtdwM9UXjBq1KDwuaLfrZyPChz41Hx7NWhTFf"
 
 [programs.mainnet]
+royalty_redemptions = "4pV5PQe2AH3r8M9sZ1seMHwhwCyLBdWbaiuWMphXSfaL"
 repay_royalties_contract = "9ZskGH9wtdwM9UXjBq1KDwuaLfrZyPChz41Hx7NWhTFf"
 
 [registry]
